@@ -22,8 +22,8 @@ describe('CommentRepositoryPostgres', () => {
   describe('addComment function', () => {
     it('should persist create comment and return created comment correctly', async () => {
       // Arrange
-      await UsersTableTestHelper.addUser({ id: 'user-123' }); // add user with id user-123
-      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); // add thread with id thread-123
+      await UsersTableTestHelper.addUser({ id: 'user-123' }); 
+      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); 
       const addComment = new AddComment({
         content: 'Comment content',
         owner: 'user-123',
@@ -60,8 +60,8 @@ describe('CommentRepositoryPostgres', () => {
     it('should not throw NotFoundError when comment found', async () => {
       // Arrange
       const commentId = 'comment-123';
-      await UsersTableTestHelper.addUser({ id: 'user-123' }); // add user with id user-123
-      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); // add thread with id thread-123
+      await UsersTableTestHelper.addUser({ id: 'user-123' }); 
+      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); 
       await CommentsTableTestHelper.addComment({ id: commentId });
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
 
@@ -77,8 +77,8 @@ describe('CommentRepositoryPostgres', () => {
       const commentId = 'comment-123';
       const userId = 'user-123';
       const wrongUserId = 'user-456';
-      await UsersTableTestHelper.addUser({ id: userId }); // add user with id user-123
-      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); // add thread with id thread-123
+      await UsersTableTestHelper.addUser({ id: userId }); 
+      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); 
       await CommentsTableTestHelper.addComment({ id: commentId });
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
 
@@ -91,8 +91,8 @@ describe('CommentRepositoryPostgres', () => {
       // Arrange
       const commentId = 'comment-123';
       const userId = 'user-123';
-      await UsersTableTestHelper.addUser({ id: userId }); // add user with id user-123
-      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); // add thread with id thread-123
+      await UsersTableTestHelper.addUser({ id: userId }); 
+      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); 
       await CommentsTableTestHelper.addComment({ id: commentId });
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
 
@@ -116,8 +116,8 @@ describe('CommentRepositoryPostgres', () => {
     it('should delete comment by id and return success correctly', async () => {
       // Arrange
       const commentId = 'comment-123';
-      await UsersTableTestHelper.addUser({ id: 'user-123' }); // add user with id user-123
-      await ThreadsTableTestHelper.addThread({ id: 'thread-123' }); // add thread with id thread-123
+      await UsersTableTestHelper.addUser({ id: 'user-123' }); 
+      await ThreadsTableTestHelper.addThread({ id: 'thread-123' });
       await CommentsTableTestHelper.addComment({ id: commentId });
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
 
@@ -135,17 +135,17 @@ describe('CommentRepositoryPostgres', () => {
     it('should get comments by thread ID correctly', async () => {
       // Arrange
       const threadId = 'thread-123';
-      await UsersTableTestHelper.addUser({ id: 'user-123' }); // add user with id user-123
-      await ThreadsTableTestHelper.addThread({ id: threadId }); // add thread with id thread-123
+      await UsersTableTestHelper.addUser({ id: 'user-123' }); 
+      await ThreadsTableTestHelper.addThread({ id: threadId }); 
       await CommentsTableTestHelper.addComment({
-        id: 'comment-123', // add comment with id comment-123
+        id: 'comment-123', 
         threadId,
-        created_at: '2023-12-08T07:19:09.775Z', // should be the second comment
+        created_at: '2023-12-08T07:19:09.775Z', 
       });
       await CommentsTableTestHelper.addComment({
-        id: 'comment-456', // add comment with id comment-456
+        id: 'comment-456', 
         threadId,
-        created_at: '2023-12-08T07:19:09.775Z', // should be the first comment
+        created_at: '2023-12-08T07:19:09.775Z',
       });
       const fakeIdGenerator = () => '123'; // stub!
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
@@ -158,14 +158,14 @@ describe('CommentRepositoryPostgres', () => {
       expect(comments).toHaveLength(2);
       expect(comments[0].id).toEqual('comment-123');
       expect(comments[0].created_at).toEqual('2023-12-08T07:19:09.775Z');
-      expect(comments[0].username).toEqual('dicoding'); // default username from UsersTableTestHelper.addUser
-      expect(comments[0].content).toEqual('sebuah komentar'); // default content from CommentsTableTestHelper.addComment
-      expect(comments[0].is_delete).toEqual(false); // default
+      expect(comments[0].username).toEqual('dicoding'); 
+      expect(comments[0].content).toEqual('sebuah komentar'); 
+      expect(comments[0].is_delete).toEqual(false); 
       expect(comments[1].id).toEqual('comment-456');
       expect(comments[1].created_at).toEqual('2023-12-08T07:19:09.775Z');
-      expect(comments[1].username).toEqual('dicoding'); // default username from UsersTableTestHelper.addUser
-      expect(comments[1].content).toEqual('sebuah komentar'); // default content from CommentsTableTestHelper.addComment
-      expect(comments[1].is_delete).toEqual(false); // default
+      expect(comments[1].username).toEqual('dicoding'); 
+      expect(comments[1].content).toEqual('sebuah komentar'); 
+      expect(comments[1].is_delete).toEqual(false); 
     });
 
     it('should show empty array if no comment found by thread ID', async () => {

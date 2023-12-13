@@ -10,8 +10,8 @@ class CommentRepositoryPostgres extends CommentRepository {
     this._idGenerator = idGenerator;
   }
 
-  async addComment(newComment) {
-    const { content, owner, threadId } = newComment;
+  async addComment(addComment) {
+    const { content, owner, threadId } = addComment;
     const id = `comment-${this._idGenerator()}`;
     const date = new Date().toISOString();
 
@@ -39,13 +39,14 @@ class CommentRepositoryPostgres extends CommentRepository {
   }
 
   async isTrueOwner(commentId, owner) {
+    
     const query = {
       text: 'SELECT * FROM comments WHERE id = $1 AND owner = $2',
       values: [commentId, owner],
     };
 
     const result = await this._pool.query(query);
-
+    console.log(result.rowCount)
     if (!result.rowCount) {
       throw new AuthorizationError('akses dilarang!');
     }
