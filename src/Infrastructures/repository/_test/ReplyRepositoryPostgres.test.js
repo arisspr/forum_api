@@ -32,7 +32,7 @@ describe('ReplyRepositoryPostgres', () => {
         owner: 'user-123',
         commentId: 'comment-123',
       });
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => '123'; 
       const replyRepositoryPostgres = new ReplyRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action
@@ -68,7 +68,7 @@ describe('ReplyRepositoryPostgres', () => {
       await ThreadsTableTestHelper.addThread({ id: threadId }); // add thread with id thread-123
       await CommentsTableTestHelper.addComment({ id: 'comment-123' }); // add comment with id comment-123
       await RepliesTableTestHelper.addReply(replyData); // add reply with id reply-123
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => '123'; 
       const replyRepositoryPostgres = new ReplyRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action

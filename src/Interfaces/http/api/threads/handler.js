@@ -34,38 +34,7 @@ class ThreadsHandler {
     response.code(200);
     return response;
   }
-  /*async postThreadHandler(request, h) {
-    const { id: owner } = request.auth.credentials;
-    Object.assign(request.payload, { owner });
-    const addThreadUseCase = this._container.getInstance(AddThreadUseCase.name);
-
-    const addedThread = await addThreadUseCase.execute(request.payload);
-
-    const response = h.response({
-      status: 'success',
-      data: {
-        addedThread,
-      },
-    });
-    response.code(201);
-    return response;
-  }
-
-  async getDetailThreadHandler(request, h) {
-    const { threadId } = request.params;
-    const detailThreadUseCase = this._container.getInstance(DetailThreadUseCase.name);
-
-    const thread = await detailThreadUseCase.execute(threadId);
-
-    const response = h.response({
-      status: 'success',
-      data: {
-        thread,
-      },
-    });
-    response.code(200);
-    return response;
-  }*/
+    
 }
 
 module.exports = ThreadsHandler;

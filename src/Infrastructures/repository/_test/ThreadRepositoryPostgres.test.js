@@ -25,7 +25,7 @@ describe('ThreadRepositoryPostgres', () => {
         body: 'Thread body',
         owner: 'user-123',
       });
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => '123'; 
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action
@@ -58,7 +58,7 @@ describe('ThreadRepositoryPostgres', () => {
       const threadId = 'thread-123';
       await UsersTableTestHelper.addUser({ id: 'user-123' }); // add user with id user-123
       await ThreadsTableTestHelper.addThread({ id: threadId }); // add thread with id thread-123
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => '123'; 
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action & Assert
@@ -93,7 +93,7 @@ describe('ThreadRepositoryPostgres', () => {
       };
       await UsersTableTestHelper.addUser(userData);
       await ThreadsTableTestHelper.addThread(threadData);
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => '123'; 
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action

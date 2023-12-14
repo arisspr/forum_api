@@ -81,7 +81,7 @@ describe('LikeRepositoryPostgres', () => {
       await ThreadsTableTestHelper.addThread({ id: 'thread-123' });
       await CommentsTableTestHelper.addComment({ id: commentId });
       await LikesTableTestHelper.addLike({ commentId, owner: userId });
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => '123'; 
       const likeRepositoryPostgres = new LikeRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action
@@ -103,7 +103,7 @@ describe('LikeRepositoryPostgres', () => {
       await ThreadsTableTestHelper.addThread({ id: 'thread-123' });
       await CommentsTableTestHelper.addComment({ id: commentId });
       await LikesTableTestHelper.addLike({ commentId, owner: userId });
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => '123'; 
       const likeRepositoryPostgres = new LikeRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action
