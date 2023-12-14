@@ -5,7 +5,7 @@ class DetailThread {
         id,
         title,
         body,
-        created_at,
+        date,
         username,
         thread,
       } = payload;
@@ -13,7 +13,7 @@ class DetailThread {
       this.id = id;
       this.title = title;
       this.body = body;
-      this.date = created_at;
+      this.date = date;
       this.username = username;
       this.thread = thread;
     }

@@ -16,7 +16,7 @@ class CommentRepositoryPostgres extends CommentRepository {
     const date = new Date().toISOString();
 
     const query = {
-      text: 'INSERT INTO comments(id, content, owner, thread, created_at, updated_at) VALUES($1, $2, $3, $4, $5, $6) RETURNING id, content, owner',
+      text: 'INSERT INTO comments(id, content, owner, thread, date, updated_at) VALUES($1, $2, $3, $4, $5, $6) RETURNING id, content, owner',
       values: [id, content, owner, threadId, date, date],
     };
 
@@ -67,11 +67,11 @@ class CommentRepositoryPostgres extends CommentRepository {
   async getCommentsByThreadId(threadId) {
     const query = {
       text: `
-        SELECT comments.id, users.username, comments.created_at, comments.content, comments.is_delete
+        SELECT comments.id, users.username, comments.date, comments.content, comments.is_delete
         FROM comments
         INNER JOIN users ON comments.owner = users.id
         WHERE comments.thread = $1
-        ORDER BY comments.created_at ASC
+        ORDER BY comments.date ASC
       `,
       values: [threadId],
     };

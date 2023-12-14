@@ -140,12 +140,12 @@ describe('CommentRepositoryPostgres', () => {
       await CommentsTableTestHelper.addComment({
         id: 'comment-123', // add comment with id comment-123
         threadId,
-        created_at: '2023-12-08T07:19:09.775Z', // should be the second comment
+        date: '2023-12-08T07:19:09.775Z', // should be the second comment
       });
       await CommentsTableTestHelper.addComment({
         id: 'comment-456', // add comment with id comment-456
         threadId,
-        created_at: '2023-12-08T07:19:09.775Z', // should be the first comment
+        date: '2023-12-08T07:19:09.775Z', // should be the first comment
       });
       const fakeIdGenerator = () => '123'; // stub!
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
@@ -157,12 +157,12 @@ describe('CommentRepositoryPostgres', () => {
       expect(comments).toBeDefined();
       expect(comments).toHaveLength(2);
       expect(comments[0].id).toEqual('comment-123');
-      expect(comments[0].created_at).toEqual('2023-12-08T07:19:09.775Z');
+      expect(comments[0].date).toEqual('2023-12-08T07:19:09.775Z');
       expect(comments[0].username).toEqual('dicoding'); // default username from UsersTableTestHelper.addUser
       expect(comments[0].content).toEqual('sebuah komentar'); // default content from CommentsTableTestHelper.addComment
       expect(comments[0].is_delete).toEqual(false); // default
       expect(comments[1].id).toEqual('comment-456');
-      expect(comments[1].created_at).toEqual('2023-12-08T07:19:09.775Z');
+      expect(comments[1].date).toEqual('2023-12-08T07:19:09.775Z');
       expect(comments[1].username).toEqual('dicoding'); // default username from UsersTableTestHelper.addUser
       expect(comments[1].content).toEqual('sebuah komentar'); // default content from CommentsTableTestHelper.addComment
       expect(comments[1].is_delete).toEqual(false); // default

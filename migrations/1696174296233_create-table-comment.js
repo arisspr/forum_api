@@ -18,7 +18,7 @@ exports.up = (pgm) => {
         type: 'VARCHAR(50)',
         notNull: true,
       },
-      created_at: {
+      date: {
         type: 'TEXT',
         notNull: true,
       },
