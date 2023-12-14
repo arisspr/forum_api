@@ -19,7 +19,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
         script: |
-          cd ~/forum_api
+          cd forum_api
           git pull origin master
           npm install
           npm run migrate up
