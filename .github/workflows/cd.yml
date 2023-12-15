@@ -13,7 +13,6 @@ jobs:
     - name: SSH and deploy app
       uses: appleboy/ssh-action@master
       with:
-        hostname: ${{ secrets.SSH_HOSTNAME }}
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.PASSWORD }}
